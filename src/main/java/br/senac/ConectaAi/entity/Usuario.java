@@ -3,6 +3,7 @@ package br.senac.ConectaAi.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="usuario")
@@ -27,11 +28,14 @@ public class Usuario {
     @Column(name="usuario_data_cadastro")
     private LocalDate dataCadastro;
 
-    @Column(name="usuario_tipo",nullable = false)
-    private int usuarioTipo;
-
     @Column(name="usuario_status",nullable = false)
     private int status;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(name="usuario_role",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name="role_id"))
+    private List<Role> roles;
 
     public int getId() {
         return id;
@@ -79,14 +83,6 @@ public class Usuario {
 
     public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
-    }
-
-    public int getUsuarioTipo() {
-        return usuarioTipo;
-    }
-
-    public void setUsuarioTipo(int usuarioTipo) {
-        this.usuarioTipo = usuarioTipo;
     }
 
     public int getStatus() {
