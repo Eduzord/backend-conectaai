@@ -31,6 +31,9 @@ public class Usuario {
     @Column(name="usuario_status",nullable = false)
     private int status;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<HistoricoVisualizacoes> historico;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name="usuario_role",
             joinColumns = @JoinColumn(name = "usuario_id"),

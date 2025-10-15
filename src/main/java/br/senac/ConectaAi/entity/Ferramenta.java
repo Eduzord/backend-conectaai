@@ -33,6 +33,9 @@ public class Ferramenta {
     @OneToMany(mappedBy = "ferramenta")
     private List<Tutorial> tutorial;
 
+    @OneToMany(mappedBy = "ferramenta")
+    private List<HistoricoVisualizacoes> historico;
+
     public int getId() {
         return id;
     }
