@@ -1,11 +1,7 @@
 package br.senac.ConectaAi.service;
 
-import br.senac.ConectaAi.dto.request.CategoriaDtoRequest;
-import br.senac.ConectaAi.dto.request.CategoriaDtoRequestUpdate;
 import br.senac.ConectaAi.dto.request.HistoricoVisualizacoesDtoRequest;
-import br.senac.ConectaAi.dto.response.CategoriaDtoResponse;
 import br.senac.ConectaAi.dto.response.HistoricoVisualizacoesDtoResponse;
-import br.senac.ConectaAi.entity.Categoria;
 import br.senac.ConectaAi.entity.HistoricoVisualizacoes;
 import br.senac.ConectaAi.repository.HistoricoVisualizacoesRepository;
 import org.modelmapper.ModelMapper;
@@ -24,11 +20,11 @@ public class HistoricoVisualizacoesService {
     private HistoricoVisualizacoesRepository historicoVisualizacoesRepository;
 
     public List<HistoricoVisualizacoes> listarHistoricoVisualizacoes(){
-        return this.historicoVisualizacoesRepository.listarHistoricosAtivos();
+        return this.historicoVisualizacoesRepository.listarHistoricoVizualizacoesAtivos();
     }
 
     public HistoricoVisualizacoes listarHistoricoVisualizacoesPorId(int idHistoricoVisualizacoes){
-        return this.historicoVisualizacoesRepository.obterHistoricoVisualizacoesPorId(idHistoricoVisualizacoes);
+        return this.historicoVisualizacoesRepository.obterHistoricoVisualizacoesAtivoPorId(idHistoricoVisualizacoes);
     }
 
     public HistoricoVisualizacoesDtoResponse salvar(HistoricoVisualizacoesDtoRequest historicoVisualizacoesDtoRequest){
@@ -43,7 +39,7 @@ public class HistoricoVisualizacoesService {
     //Método atualizar vai aqui, caso precise
 
     public void apagar(Integer idHistoricoVisualizacoes){
-        HistoricoVisualizacoes historicoVisualizacoes = this.historicoVisualizacoesRepository.obterHistoricoVisualizacoesPorId(idHistoricoVisualizacoes);
+        HistoricoVisualizacoes historicoVisualizacoes = this.historicoVisualizacoesRepository.obterHistoricoVisualizacoesAtivoPorId(idHistoricoVisualizacoes);
         if (historicoVisualizacoes != null) {
             this.historicoVisualizacoesRepository.apagadorLogico(idHistoricoVisualizacoes);
         }else{

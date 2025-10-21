@@ -2,8 +2,7 @@ package br.senac.ConectaAi.dto.response;
 
 import java.time.LocalDateTime;
 
-public class HistoricoVisualizacoesDtoResponse {
-
+public class AvaliacaoDtoResponse {
     private Integer id;
 
     private LocalDateTime data;

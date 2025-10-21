@@ -1,13 +1,17 @@
 package br.senac.ConectaAi.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDateTime;
 
-public class HistoricoVisualizacoesDtoRequest {
+public class FavoritoDtoRequest {
 
     private LocalDateTime data;
 
+    @NotBlank(message = "É necessário um usuario")
     private Integer idUsuario;
 
+    @NotBlank(message = "É necessário uma ferramenta")
     private Integer idFerramenta;
 
     public LocalDateTime getData() {

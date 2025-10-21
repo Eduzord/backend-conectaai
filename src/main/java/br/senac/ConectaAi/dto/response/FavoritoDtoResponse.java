@@ -2,7 +2,7 @@ package br.senac.ConectaAi.dto.response;
 
 import java.time.LocalDateTime;
 
-public class HistoricoVisualizacoesDtoResponse {
+public class FavoritoDtoResponse {
 
     private Integer id;
 

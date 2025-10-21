@@ -34,6 +34,12 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private List<HistoricoVisualizacoes> historico;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Avaliacao> avaliacoes;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Favorito> favoritos;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name="usuario_role",
             joinColumns = @JoinColumn(name = "usuario_id"),

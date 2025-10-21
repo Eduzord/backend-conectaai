@@ -34,7 +34,19 @@ public class Ferramenta {
     private List<Tutorial> tutorial;
 
     @OneToMany(mappedBy = "ferramenta")
+    private List<Avaliacao> avaliacoes;
+
+    @OneToMany(mappedBy = "ferramenta")
+    private List<Favorito> favoritos;
+
+    @OneToMany(mappedBy = "ferramenta")
     private List<HistoricoVisualizacoes> historico;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(name="ferramenta_categoria",
+            joinColumns = @JoinColumn(name = "ferramenta_id"),
+            inverseJoinColumns = @JoinColumn(name="categoria_id"))
+    private List<Categoria> categorias;
 
     public int getId() {
         return id;
@@ -98,5 +110,37 @@ public class Ferramenta {
 
     public void setTutorial(List<Tutorial> tutorial) {
         this.tutorial = tutorial;
+    }
+
+    public List<Avaliacao> getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
+    }
+
+    public List<Favorito> getFavoritos() {
+        return favoritos;
+    }
+
+    public void setFavoritos(List<Favorito> favoritos) {
+        this.favoritos = favoritos;
+    }
+
+    public List<HistoricoVisualizacoes> getHistorico() {
+        return historico;
+    }
+
+    public void setHistorico(List<HistoricoVisualizacoes> historico) {
+        this.historico = historico;
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
     }
 }
