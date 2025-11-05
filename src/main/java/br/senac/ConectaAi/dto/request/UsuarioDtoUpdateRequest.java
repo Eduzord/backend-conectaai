@@ -2,10 +2,7 @@ package br.senac.ConectaAi.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 
-import java.time.LocalDateTime;
-
-public class UsuarioDtoRequest {
-
+public class UsuarioDtoUpdateRequest {
     @NotBlank(message="O nome é obrigatório")
     private String nome;
 
@@ -15,7 +12,7 @@ public class UsuarioDtoRequest {
     @NotBlank(message = "A senha é obrigatória")
     private String senha;
 
-    private String googleId;
+    private Integer status;
 
 //    private LocalDateTime dataCadastro;
 
@@ -43,19 +40,11 @@ public class UsuarioDtoRequest {
         this.senha = senha;
     }
 
-    public String getGoogleId() {
-        return googleId;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setGoogleId(String googleId) {
-        this.googleId = googleId;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
-//
-//    public LocalDateTime getDataCadastro() {
-//        return dataCadastro;
-//    }
-//
-//    public void setDataCadastro(LocalDateTime dataCadastro) {
-//        this.dataCadastro = dataCadastro;
-//    }
 }

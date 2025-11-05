@@ -1,6 +1,7 @@
 package br.senac.ConectaAi.controller;
 
 import br.senac.ConectaAi.dto.request.UsuarioDtoRequest;
+import br.senac.ConectaAi.dto.request.UsuarioDtoUpdateRequest;
 import br.senac.ConectaAi.dto.response.UsuarioDtoResponse;
 import br.senac.ConectaAi.entity.Usuario;
 import br.senac.ConectaAi.service.UsuarioService;
@@ -50,8 +51,8 @@ public class UsuarioController {
     @PutMapping("/atualizar/{idUsuario}")
     @Operation(summary = "Atualiza todos os parametros de um usuário.")
     public ResponseEntity<UsuarioDtoResponse> atualizar(@Valid @PathVariable("idUsuario") Integer idUsuario,
-                                                        @RequestBody UsuarioDtoRequest usuarioDtoRequest){
-        return ResponseEntity.ok(usuarioService.atualizar(idUsuario, usuarioDtoRequest));
+                                                        @RequestBody UsuarioDtoUpdateRequest usuarioDtoUpdateRequest){
+        return ResponseEntity.ok(usuarioService.atualizar(idUsuario, usuarioDtoUpdateRequest));
     }
 
     @DeleteMapping("/apagar/{idUsuario}")

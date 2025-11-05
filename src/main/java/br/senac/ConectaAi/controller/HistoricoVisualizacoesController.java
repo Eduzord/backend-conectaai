@@ -40,7 +40,7 @@ public class HistoricoVisualizacoesController {
 
     @PostMapping("/criar")
     @Operation(summary = "Cria um novo histórico no sistema.")
-    public ResponseEntity<HistoricoVisualizacoesDtoResponse> criar(@Valid @RequestBody HistoricoVisualizacoesDtoRequest historicoVisualizacoesDtoRequest){
+    public ResponseEntity<HistoricoVisualizacoesDtoResponse> criar(@RequestBody HistoricoVisualizacoesDtoRequest historicoVisualizacoesDtoRequest){
 
         return  ResponseEntity.ok(historicoVisualizacoesService.salvar(historicoVisualizacoesDtoRequest));
     }

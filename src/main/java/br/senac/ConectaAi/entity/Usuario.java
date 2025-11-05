@@ -3,6 +3,7 @@ package br.senac.ConectaAi.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -26,7 +27,7 @@ public class Usuario {
     private String googleId;
 
     @Column(name="usuario_data_cadastro")
-    private LocalDate dataCadastro;
+    private LocalDateTime dataCadastro;
 
     @Column(name="usuario_status",nullable = false)
     private int status;
@@ -86,11 +87,11 @@ public class Usuario {
         this.googleId = googleId;
     }
 
-    public LocalDate getDataCadastro() {
+    public LocalDateTime getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(LocalDate dataCadastro) {
+    public void setDataCadastro(LocalDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 
@@ -101,4 +102,37 @@ public class Usuario {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public List<HistoricoVisualizacoes> getHistorico() {
+        return historico;
+    }
+
+    public void setHistorico(List<HistoricoVisualizacoes> historico) {
+        this.historico = historico;
+    }
+
+    public List<Avaliacao> getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
+    }
+
+    public List<Favorito> getFavoritos() {
+        return favoritos;
+    }
+
+    public void setFavoritos(List<Favorito> favoritos) {
+        this.favoritos = favoritos;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 }
+
