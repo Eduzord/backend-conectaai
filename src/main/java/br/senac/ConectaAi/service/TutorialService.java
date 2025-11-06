@@ -3,11 +3,15 @@ package br.senac.ConectaAi.service;
 import br.senac.ConectaAi.dto.request.TutorialDtoRequest;
 import br.senac.ConectaAi.dto.request.TutorialDtoRequestUpdate;
 import br.senac.ConectaAi.dto.response.TutorialDtoResponse;
+import br.senac.ConectaAi.entity.Ferramenta;
 import br.senac.ConectaAi.entity.Tutorial;
+import br.senac.ConectaAi.repository.FerramentaRepository;
 import br.senac.ConectaAi.repository.TutorialRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -20,6 +24,9 @@ public class TutorialService {
     @Autowired
     private TutorialRepository tutorialRepository;
 
+    @Autowired
+    private FerramentaRepository ferramentaRepository;
+
     public List<Tutorial> listarTutoriais(){
         return this.tutorialRepository.listarTutoriaisAtivos();
     }
@@ -29,7 +36,23 @@ public class TutorialService {
     }
 
     public TutorialDtoResponse salvar(TutorialDtoRequest tutorialDtoRequest){
-        Tutorial tutorial = modelMapper.map(tutorialDtoRequest, Tutorial.class);
+//        Tutorial tutorial = modelMapper.map(tutorialDtoRequest, Tutorial.class);
+        Integer ferramentaId = tutorialDtoRequest.getFerramentaId();
+        if (ferramentaId == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ferramentaId é obrigatório");
+        }
+
+        Ferramenta ferramenta = ferramentaRepository.obterFerramentaAtivaPorId(ferramentaId);
+        if (ferramenta == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ferramenta não encontrada ou inativa: " + ferramentaId);
+        }
+
+
+        Tutorial tutorial = new Tutorial();
+        tutorial.setTitulo(tutorialDtoRequest.getTitulo());
+        tutorial.setConteudo(tutorialDtoRequest.getConteudo());
+        tutorial.setLink(tutorialDtoRequest.getLink());
+        tutorial.setFerramenta(ferramenta);
         tutorial.setStatus(1);
 
         Tutorial tutorialSalvo = this.tutorialRepository.save(tutorial);

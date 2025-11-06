@@ -21,9 +21,6 @@ public class Tutorial {
     @Column(name = "tutorial_link")
     private String link;
 
-    @Column(name = "tutorialcol")
-    private String col;
-
     @Column(name = "tutorial_status")
     private int status;
 
@@ -62,14 +59,6 @@ public class Tutorial {
 
     public void setLink(String link) {
         this.link = link;
-    }
-
-    public String getCol() {
-        return col;
-    }
-
-    public void setCol(String col) {
-        this.col = col;
     }
 
     public int getStatus() {
