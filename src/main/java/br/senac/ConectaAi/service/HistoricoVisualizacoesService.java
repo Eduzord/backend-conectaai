@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class HistoricoVisualizacoesService {
@@ -32,8 +33,11 @@ public class HistoricoVisualizacoesService {
     @Autowired
     private FerramentaRepository ferramentaRepository;
 
-    public List<HistoricoVisualizacoes> listarHistoricoVisualizacoes(){
-        return this.historicoVisualizacoesRepository.listarHistoricoVizualizacoesAtivos();
+    public List<HistoricoVisualizacoesDtoResponse> listarHistoricoVisualizacoes(){
+        List<HistoricoVisualizacoes> list = historicoVisualizacoesRepository.listarHistoricoVizualizacoesAtivos();
+        return list.stream()
+                .map(h -> modelMapper.map(h, HistoricoVisualizacoesDtoResponse.class))
+                .collect(Collectors.toList());
     }
 
     public HistoricoVisualizacoes listarHistoricoVisualizacoesPorId(int idHistoricoVisualizacoes){

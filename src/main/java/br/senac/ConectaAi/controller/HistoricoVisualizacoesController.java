@@ -23,7 +23,7 @@ public class HistoricoVisualizacoesController {
 
     @GetMapping("/listar")
     @Operation(summary = "Listar historico no sistema.")
-    public ResponseEntity<List<HistoricoVisualizacoes>> listar(){
+    public ResponseEntity<List<HistoricoVisualizacoesDtoResponse>> listar(){
         return  ResponseEntity.ok(historicoVisualizacoesService.listarHistoricoVisualizacoes());
     }
 
