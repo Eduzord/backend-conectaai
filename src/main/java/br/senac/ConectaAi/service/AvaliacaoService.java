@@ -77,6 +77,7 @@ public class AvaliacaoService {
 
     public AvaliacaoDtoResponse atualizar(Integer idAvaliacao, AvaliacaoDtoRequestUpdate avaliacaoDtoRequestUpdate){
         Avaliacao avaliacao = this.listarAvaliacaoPorId(idAvaliacao);
+
         if(avaliacao != null){
             Integer usuarioId = avaliacaoDtoRequestUpdate.getIdUsuario();
             Integer ferramentaId = avaliacaoDtoRequestUpdate.getIdFerramenta();
