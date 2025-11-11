@@ -6,7 +6,7 @@ FROM amazoncorretto:21-alpine
 
 COPY --from=build target/*.jar app.jar
 
-EXPOSE 8080
+EXPOSE 4503
 
 CMD ["java", "-jar", "/app.jar"]
 
